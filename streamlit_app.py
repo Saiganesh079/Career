@@ -44,7 +44,7 @@ st.title("Career Map")
 # Initialize the chat history
 if "messages" not in st.session_state:
     st.session_state.messages = [
-        {"role": "assistant", "content": "Welcome to the career guide chatbot! What can I help you with?"}
+        {"role": "assistant", "content": "Hi!, I am CareerMap. What can I help you with?"}
     ]
 
 # Display the chat history
