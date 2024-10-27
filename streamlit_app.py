@@ -23,6 +23,9 @@ def generate_text_response(query):
 # Create a Streamlit app
 st.title("Career Map")
 
+# Set page configuration to wide mode
+st.set_page_config(layout="wide")
+
 # Initialize the chat history
 if "messages" not in st.session_state:
     st.session_state.messages = [
