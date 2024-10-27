@@ -17,6 +17,18 @@ def generate_text_response(query):
     return response.text
 
 
+# Load custom CSS to hide the footer
+st.markdown(
+    """
+    <style>
+    footer {
+        visibility: hidden;
+    }
+    </style>
+    """,
+    unsafe_allow_html=True
+)
+
 # Create a Streamlit app
 st.title("Career Map")
 
@@ -60,16 +72,6 @@ hide_streamlit_style = """
             </style>
             """
 st.markdown(hide_streamlit_style, unsafe_allow_html=True)
-
-
-st.markdown(
-    """
-    <style>
-    footer {visibility: hidden;}
-    </style>
-    """,
-    unsafe_allow_html=True
-)
 
 
 
