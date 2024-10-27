@@ -13,6 +13,18 @@ hide_streamlit_style = """
             """
 st.markdown(hide_streamlit_style, unsafe_allow_html=True)
 
+
+# Add overlay bar HTML
+st.markdown(
+    """
+    <div class="overlay">
+        <h2 style="margin: 0;">Career Map Chatbot</h2>
+        <p style="margin: 0;">Ask me anything about career guidance!</p>
+    </div>
+    """,
+    unsafe_allow_html=True
+)
+
 # Initialize the Google API Key
 os.environ['GOOGLE_API_KEY'] = st.secrets["API_Token"]
 
