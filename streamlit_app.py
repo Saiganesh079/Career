@@ -52,7 +52,12 @@ query = st.chat_input("What's on your mind? ")
 if query:
     process_user_input(query)
 
-
+hide_footer_style = """
+    <style>
+    footer {visibility: hidden;}
+    </style>
+"""
+st.markdown(hide_footer_style, unsafe_allow_html=True)
 
 
 
