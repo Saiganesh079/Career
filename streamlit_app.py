@@ -16,16 +16,6 @@ def generate_text_response(query):
     response = model.generate_content(query)
     return response.text
 
-# Hide the Streamlit footer
-st.markdown(
-    """
-    <style>
-    footer {visibility: hidden;}
-    </style>
-    """,
-    unsafe_allow_html=True
-)
-
 
 # Create a Streamlit app
 st.title("Career Map")
