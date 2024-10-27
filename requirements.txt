@@ -1,3 +1,2 @@
-google-generativeai==0.2.0
-streamlit==1.25.0
-pip install --upgrade pip
+google-generativeai
+streamlit
