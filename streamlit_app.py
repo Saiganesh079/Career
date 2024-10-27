@@ -17,7 +17,7 @@ def generate_text_response(query):
     return response.text
 
 # Create a Streamlit app
-st.title("Career Guide Chatbot")
+st.title("Career Map")
 
 # Initialize the chat history
 if "messages" not in st.session_state:
