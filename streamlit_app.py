@@ -5,25 +5,23 @@ import google.generativeai as genai
 # Set page configuration to wide mode
 st.set_page_config(layout="wide")
 
+
+
+# Hide the Streamlit footer and toolbar
 hide_streamlit_style = """
-            <style>
-            [data-testid="stToolbar"] {visibility: hidden !important;}
-            footer {visibility: hidden !important;}
-            </style>
-            """
+    <style>
+    [data-testid="stToolbar"] {visibility: hidden !important;}
+    footer {visibility: hidden !important;}
+    /* Remove padding from the top of the title */
+    .title {
+        padding-top: 0 !important;
+        margin-top: 0 !important;
+    }
+    </style>
+"""
 st.markdown(hide_streamlit_style, unsafe_allow_html=True)
 
 
-# Add overlay bar HTML
-st.markdown(
-    """
-    <div class="overlay">
-        <h2 style="margin: 0;">Career Map Chatbot</h2>
-        <p style="margin: 0;">Ask me anything about career guidance!</p>
-    </div>
-    """,
-    unsafe_allow_html=True
-)
 
 # Initialize the Google API Key
 os.environ['GOOGLE_API_KEY'] = st.secrets["API_Token"]
