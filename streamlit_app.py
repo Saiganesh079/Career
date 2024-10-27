@@ -5,23 +5,12 @@ import google.generativeai as genai
 # Set page configuration to wide mode
 st.set_page_config(layout="wide")
 
-# Hide the Streamlit footer and toolbar
 hide_streamlit_style = """
-    <style>
-    [data-testid="stToolbar"] {visibility: hidden !important;}
-    footer {visibility: hidden !important;}
-    .overlay {
-        position: fixed;
-        top: 0;
-        left: 0;
-        right: 0;
-        background-color: rgba(255, 255, 255, 0.9);
-        padding: 10px;
-        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-        z-index: 1000;
-    }
-    </style>
-"""
+            <style>
+            [data-testid="stToolbar"] {visibility: hidden !important;}
+            footer {visibility: hidden !important;}
+            </style>
+            """
 st.markdown(hide_streamlit_style, unsafe_allow_html=True)
 
 # Initialize the Google API Key
