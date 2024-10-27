@@ -2,11 +2,16 @@ import streamlit as st
 import os
 import google.generativeai as genai 
 
-# Hide the Streamlit footer
+# Set page configuration to wide mode
+st.set_page_config(layout="wide")
+
+# Load custom CSS to hide the footer
 st.markdown(
     """
     <style>
-    footer {visibility: hidden;}
+    footer {
+        visibility: hidden;
+    }
     </style>
     """,
     unsafe_allow_html=True
