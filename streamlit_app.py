@@ -16,6 +16,7 @@ def generate_text_response(query):
     response = model.generate_content(query)
     return response.text
 
+st.title("Career Map")
 
 # Load custom CSS to hide the footer
 st.markdown(
