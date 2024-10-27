@@ -18,13 +18,12 @@ def generate_text_response(query):
     response = model.generate_content(query)
     return response.text
 
-
+# Set page configuration to wide mode
+st.set_page_config(layout="wide")
 
 # Create a Streamlit app
 st.title("Career Map")
 
-# Set page configuration to wide mode
-st.set_page_config(layout="wide")
 
 # Initialize the chat history
 if "messages" not in st.session_state:
