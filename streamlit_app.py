@@ -50,13 +50,14 @@ if "messages" not in st.session_state:
 # Display the chat history
 for message in st.session_state.messages:
     with st.chat_message(message["role"]):
-        with st.spinner(text="In progress...");
-            st.markdown(message["content"])
+
+        st.markdown(message["content"])
 
 # Process and store user input
 def process_user_input(query):
     # Generate a response using the Gemini API
-    response = generate_text_response(query)
+    with st.spinner("Generating response..."):
+        response = generate_text_response(query)
     
     # Display the assistant message
     with st.chat_message("assistant"):
