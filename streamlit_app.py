@@ -5,7 +5,17 @@ import google.generativeai as genai
 # Set page configuration to wide mode
 st.set_page_config(layout="wide")
 
-
+# Load custom CSS to hide the footer
+st.markdown(
+    """
+    <style>
+    footer {
+        visibility: hidden;
+    }
+    </style>
+    """,
+    unsafe_allow_html=True
+)
 
 # Initialize the Google API Key
 os.environ['GOOGLE_API_KEY'] = st.secrets["API_Token"]
