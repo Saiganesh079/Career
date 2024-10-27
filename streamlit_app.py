@@ -2,7 +2,15 @@ import streamlit as st
 import os
 import google.generativeai as genai 
 
-
+# Hide the Streamlit footer
+st.markdown(
+    """
+    <style>
+    footer {visibility: hidden;}
+    </style>
+    """,
+    unsafe_allow_html=True
+)
 
 # Initialize the Google API Key
 os.environ['GOOGLE_API_KEY'] = st.secrets["API_Token"]
