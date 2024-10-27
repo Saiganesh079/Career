@@ -50,7 +50,8 @@ if "messages" not in st.session_state:
 # Display the chat history
 for message in st.session_state.messages:
     with st.chat_message(message["role"]):
-        st.markdown(message["content"])
+            st.spinner(text="In progress...")
+            st.markdown(message["content"])
 
 # Process and store user input
 def process_user_input(query):
