@@ -2,6 +2,28 @@ import streamlit as st
 import os
 import google.generativeai as genai 
 
+# Inject custom CSS and JavaScript to hide the footer
+st.components.v1.html(
+    """
+    <style>
+        footer {
+            visibility: hidden;
+        }
+    </style>
+    <script>
+        const observer = new MutationObserver(() => {
+            const footer = document.querySelector('footer');
+            if (footer) {
+                footer.style.display = 'none';
+            }
+        });
+        observer.observe(document.body, { childList: true, subtree: true });
+    </script>
+    """,
+    height=0,
+)
+
+
 # Initialize the Google API Key
 os.environ['GOOGLE_API_KEY'] = st.secrets["API_Token"]
 
