@@ -7,19 +7,7 @@ st.set_page_config(layout="wide")
 
 
 
-# Hide the Streamlit footer and toolbar
-hide_streamlit_style = """
-    <style>
-    [data-testid="stToolbar"] {visibility: hidden !important;}
-    footer {visibility: hidden !important;}
-    /* Remove padding from the top of the title */
-    .title {
-        padding-top: 0 !important;
-        margin-top: 0 !important;
-    }
-    </style>
-"""
-st.markdown(hide_streamlit_style, unsafe_allow_html=True)
+
 
 
 
