@@ -44,7 +44,7 @@ for message in st.session_state.messages:
 # Process and store user input
 def process_user_input(query):
     # Generate a response using the Gemini API
-    with st.spinner("Generating response..."):
+    with st.spinner("Thinking..."):
         response = generate_text_response(query)
     
     # Display the assistant message
