@@ -22,32 +22,45 @@ def generate_text_response(query):
 # Create a Streamlit app
 st.title("Career Map")
 
-# Custom CSS to hide the top and bottom elements
+# Custom CSS to hide the default header and footer, and style the navigation bar
 st.markdown("""
     <style>
-        /* Hide the header */
+        /* Hide the default header */
         header {
             visibility: hidden;
         }
-        /* Hide the footer */
+        /* Hide the default footer */
         footer {
             visibility: hidden;
         }
-        /* Optionally, you can also adjust the body margin to utilize full height */
-        .css-1d391kg {
-            visibility: hidden;
+        /* Custom navigation bar styling */
+        .navbar {
+            background-color: #f1f1f1;
+            padding: 10px;
+            text-align: center;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+        }
+        .nav-link {
+            margin: 0 15px;
+            text-decoration: none;
+            color: black;
+            font-weight: bold;
         }
         body {
             margin: 0;
+            padding-top: 60px; /* Adjust based on navbar height */
         }
     </style>
+    <div class="navbar">
+        <a class="nav-link" href="#">Home</a>
+        <a class="nav-link" href="#">About</a>
+        <a class="nav-link" href="#">Contact</a>
+    </div>
 """, unsafe_allow_html=True)
-
-# Sidebar for navigation
-st.sidebar.title("Navigation")
-st.sidebar.markdown("[Home](#)")
-st.sidebar.markdown("[About](#)")
-st.sidebar.markdown("[Contact](#)")
 
 # Initialize the chat history
 if "messages" not in st.session_state:
