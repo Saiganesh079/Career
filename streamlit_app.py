@@ -29,7 +29,7 @@ st.markdown("""
         header {
             visibility: hidden;
         }
-        /* Hide the default footer */
+        /* Hide the default footer and "Hosted with Streamlit" */
         footer {
             visibility: hidden;
         }
@@ -72,7 +72,7 @@ st.markdown("""
         }
     </style>
     <div class="navbar">
-        <span class="pursuit-button">Pursuit</span> <!-- Changed to span -->
+        <span class="pursuit-button">Pursuit</span>
     </div>
 """, unsafe_allow_html=True)
 
