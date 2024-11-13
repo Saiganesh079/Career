@@ -29,17 +29,22 @@ st.markdown("""
     background-color: #f1f1f1;
     padding: 10px;
     text-align: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
 }
-.nav-link {
-    margin: 0 15px;
-    text-decoration: none;
-    color: black;
+.nav-button {
+    float: right;
+    margin-right: 20px;
+}
+body {
+    padding-top: 60px; /* Adjust based on header height */
 }
 </style>
 <div class="header">
-    <a class="nav-link" href="#">Home</a>
-    <a class="nav-link" href="#">About</a>
-    <a class="nav-link" href="#">Contact</a>
+    <button class="nav-button" onclick="alert('Button clicked!')">Click Me!</button>
 </div>
 """, unsafe_allow_html=True)
 
