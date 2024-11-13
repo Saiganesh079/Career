@@ -22,29 +22,21 @@ def generate_text_response(query):
 # Create a Streamlit app
 st.title("Career Map")
 
-# Custom fixed navigation bar at the top
+# Custom navigation bar at the top
 st.markdown("""
 <style>
-.fixed-header {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
+.header {
     background-color: #f1f1f1;
     padding: 10px;
     text-align: center;
-    z-index: 1000;
 }
 .nav-link {
     margin: 0 15px;
     text-decoration: none;
     color: black;
 }
-body {
-    padding-top: 60px; /* Adjust based on header height */
-}
 </style>
-<div class="fixed-header">
+<div class="header">
     <a class="nav-link" href="#">Home</a>
     <a class="nav-link" href="#">About</a>
     <a class="nav-link" href="#">Contact</a>
