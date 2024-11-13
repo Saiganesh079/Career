@@ -37,7 +37,8 @@ st.markdown("""
         .navbar {
             background-color: #f1f1f1;
             padding: 10px;
-            text-align: center;
+            display: flex; /* Use flexbox */
+            justify-content: flex-end; /* Align items to the right */
             position: fixed;
             top: 0;
             left: 0;
