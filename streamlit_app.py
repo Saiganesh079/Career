@@ -1,6 +1,6 @@
-import streamlit as st
+import streamlit as st 
 import os
-import google.generativeai as genai
+import google.generativeai as genai 
 
 # Set page configuration to wide mode
 st.set_page_config(layout="wide")
@@ -19,13 +19,21 @@ def generate_text_response(query):
     response = model.generate_content(query)
     return response.text
 
-# Check or initialize page state
+# Track which page the user is viewing
 if "page" not in st.session_state:
-    st.session_state.page = "home"  # Set default page to home
+    st.session_state.page = "home"  # Default to the home page
 
-# Custom CSS for styling
+# Custom CSS to hide the default header and footer, and style the navigation bar
 st.markdown("""
     <style>
+        /* Hide the default header */
+        header {
+            visibility: hidden;
+        }
+        /* Hide the default footer */
+        footer {
+            visibility: hidden;
+        }
         /* Custom navigation bar styling */
         .navbar {
             background-color: #f1f1f1;
@@ -53,18 +61,19 @@ st.markdown("""
         }
     </style>
     <div class="navbar">
-        <button class="pursuit-button" onclick="window.location.reload();">Pursuit</button>
+        <!-- Placeholder for Pursuit Button -->
     </div>
 """, unsafe_allow_html=True)
 
-# Button click handler to switch pages
+# Add Pursuit button in Streamlit app
 if st.button("Pursuit", key="pursuit_btn"):
     st.session_state.page = "pursuit"  # Switch to Pursuit page
 
-# Home Page content
+# Display content based on the current page
 if st.session_state.page == "home":
     st.title("Career Map")
-    
+
+    # Initialize the chat history
     if "messages" not in st.session_state:
         st.session_state.messages = [
             {"role": "assistant", "content": "Hi! I am CareerMap. What can I help you with?"}
