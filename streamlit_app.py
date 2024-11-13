@@ -70,25 +70,23 @@ st.markdown("""
     </style>
 """, unsafe_allow_html=True)
 
-# Top navigation bar
-st.markdown("""
-    <div class="topnav">
-        <a href="#career-map" onclick="setPage('Career Map')">Career Map</a>
-        <a href="#pursuit-info" onclick="setPage('Pursuit Info')">Pursuit Info</a>
-    </div>
-    <script>
-        function setPage(page) {
-            const streamlit = window.streamlit || {};
-            streamlit.setPage(page);
-        }
-    </script>
-""", unsafe_allow_html=True)
-
-# Set the default page
+# Initialize session state for page navigation
 if "page" not in st.session_state:
     st.session_state.page = "Career Map"
 
-# Handle page navigation
+# Function to switch pages
+def switch_page(page_name):
+    st.session_state.page = page_name
+
+# Top navigation bar
+st.markdown("""
+    <div class="topnav">
+        <a href="#" onclick="switch_page('Career Map')">Career Map</a>
+        <a href="#" onclick="switch_page('Pursuit Info')">Pursuit Info</a>
+    </div>
+""", unsafe_allow_html=True)
+
+# Page content based on the current page
 if st.session_state.page == "Career Map":
     st.title("Career Map")
     st.markdown('<div id="career-map"></div>', unsafe_allow_html=True)
@@ -129,18 +127,13 @@ if st.session_state.page == "Career Map":
 
 elif st.session_state.page == "Pursuit Info":
     st.title("Pursuit Information")
-    st.markdown('<div id="pursuit-info"></div>', unsafe_allow_html=True)
-    
-    # Display the content for Narrative Therapy
     st.subheader("Narrative Therapy")
     st.markdown("""
         Narrative Therapy encourages you to view life as a series of stories and to reshape the way you interpret your experiences. By reframing limiting beliefs and focusing on empowering narratives, you gain control over your life’s direction. This technique can be transformative in aligning with personal goals and creating a fulfilling life path.
-    """) # Add additional resources or links related to Narrative Therapy
+    """)
     st.markdown("### Additional Resources")
-    st.markdown("""
-        - **About Narrative Therapy With Children**: This resource discusses unique perspectives in child and family therapy. [Read more here](https://narrativeapproaches.com/resources/narrative-therapy-with-children).
-        - **Quotes and Insights**: A collection of powerful quotes from notable figures in the field of Narrative Therapy, emphasizing the importance of storytelling in healing. [Explore the quotes](https://narrativeapproaches.com/resources/quotes/).
-        - **Therapeutic Techniques**: Learn about various techniques used in Narrative Therapy to help individuals reshape their narratives and empower themselves.
-        - **Case Studies**: Real-life examples of how Narrative Therapy has been applied in different contexts, showcasing its effectiveness in various situations.
-        - **Workshops and Training**: Information on upcoming workshops and training sessions for those interested in deepening their understanding of Narrative Therapy.
+    st.markdown """
+        - [Narrative Therapy Overview](https://www.narrativetherapy.org)
+        - [Techniques in Narrative Therapy](https://www.narrativetherapy.org/techniques)
+        - [Books on Narrative Therapy](https://www.amazon.com/s?k=narrative+therapy)
     """)
