@@ -72,9 +72,23 @@ st.markdown("""
         }
     </style>
     <div class="navbar">
-        <span class="pursuit-button">Pursuit</span> <!-- Changed to span -->
+        <span class="pursuit-button" onclick="document.getElementById('pursuit-section').scrollIntoView();">Pursuit</span>
     </div>
 """, unsafe_allow_html=True)
+
+# Create a section for the Pursuit information
+pursuit_section = """
+    <div id="pursuit-section" style="padding: 20px; margin-top: 60px;">
+        <h2>Kaizen</h2>
+        <p><strong>Description:</strong> Kaizen, a Japanese philosophy of continuous improvement, encourages making small, incremental changes every day to achieve larger life goals. By focusing on consistent, manageable steps, Kaizen fosters long-term progress and resilience, helping you reach your aims without overwhelming yourself. This approach is effective for both personal development and professional growth.</p>
+        
+        <h2>SWOT Analysis for Personal Growth</h2>
+        <p><strong>Description:</strong> Common in business, SWOT Analysis (Strengths, Weaknesses, Opportunities, Threats) can also be applied to personal development. By evaluating your internal strengths and weaknesses, as well as external opportunities and threats, you gain insights into how to maximize your potential. This structured reflection can help you make informed decisions to achieve your aims.</p>
+    </div>
+"""
+
+# Display the Pursuit section
+st.markdown(pursuit_section, unsafe_allow_html=True)
 
 # Initialize the chat history
 if "messages" not in st.session_state:
@@ -97,7 +111,7 @@ def process_user_input(query):
     with st.chat_message("assistant"):
         st.markdown(response)
     
-    # Store the user message
+ # Store the user message
     st.session_state.messages.append({"role": "user", "content": query})
     
     # Store the assistant message
