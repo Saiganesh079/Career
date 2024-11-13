@@ -19,60 +19,12 @@ def generate_text_response(query):
     response = model.generate_content(query)
     return response.text
 
-# Custom CSS for the top overlay bar
-st.markdown("""
-    <style>
-        /* Custom overlay bar styling */
-        .overlay {
-            background-color: #f1f1f1;
-            padding: 10px;
-            display: flex; /* Use flexbox */
-            justify-content: center; /* Center items */
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            z-index: 1000;
-        }
-        .button {
-            background-color: #4CAF50; /* Green background */
-            border: none;
-            color: white; /* White text */
-            padding: 10px 20px;
-            text-align: center;
-            text-decoration: none;
-            display: inline-block;
-            font-size: 16px;
-            margin: 4px 10px; /* Space between buttons */
-            cursor: pointer;
-            border-radius: 5px;
-            transition: background-color 0.3s, transform 0.2s;
-        }
-        .button:hover {
-            background-color: #45a049; /* Darker green on hover */
-        }
-        body {
-            margin: 0;
-            padding-top: 60px; /* Adjust based on overlay height */
-        }
-    </style>
-    <div class="overlay">
-        <button class="button" id="career-g" onclick="setPage('Career G')">Career G</button>
-        <button class="button" id="pursuit-info" onclick="setPage('Pursuit Info')">Pursuit Info</button>
-    </div>
-    <script>
-        function setPage(page) {
-            const params = new URLSearchParams(window.location.search);
-            params.set('page', page);
-            window.location.search = params.toString();
-        }
-    </script>
-""", unsafe_allow_html=True)
+# Sidebar for navigation
+st.sidebar.title("Navigation")
+page = st.sidebar.radio("Go to", ["Career Map", "Pursuit Info"])
 
-# Get the selected page from the URL parameters
-selected_page = st.experimental_get_query_params().get('page', ['Career G'])[0]
-
-if selected_page == "Career G":
+# Create a Streamlit app
+if page == "Career Map":
     st.title("Career Map")
 
     # Initialize the chat history
@@ -109,7 +61,7 @@ if selected_page == "Career G":
     if query:
         process_user_input(query)
 
-elif selected_page == "Pursuit Info":
+elif page == "Pursuit Info":
     st.title("Pursuit Information")
     st.markdown("""
         ## Welcome to the Pursuit Information Page
