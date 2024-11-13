@@ -45,9 +45,9 @@ st.markdown("""
             z-index: 1000;
         }
         .pursuit-button {
-            background-color: #4CAF50; /* Green */
-            border: none;
-            color: #ffffff; /* Change text color to white */
+            background-color: transparent; /* Transparent background */
+            border: 2px solid #4CAF50; /* Green border */
+            color: #4CAF50; /* Green text */
             padding: 10px 20px;
             text-align: center;
             text-decoration: none;
@@ -56,10 +56,11 @@ st.markdown("""
             margin: 4px 2px;
             cursor: pointer;
             border-radius: 5px;
-            transition: background-color 0.3s, transform 0.2s;
+            transition: background-color 0.3s, transform 0.2s, color 0.3s;
         }
         .pursuit-button:hover {
-            background-color: #45a049; /* Darker green */
+            background-color: #4CAF50; /* Green background on hover */
+            color: white; /* White text on hover */
         }
         .pursuit-button:active {
             transform: scale(0.95); /* Button press effect */
@@ -70,7 +71,7 @@ st.markdown("""
         }
     </style>
     <div class="navbar">
-        <a class="pursuit-button" href="#">Pursuit</a>
+        <span class="pursuit-button">Pursuit</span> <!-- Changed to span -->
     </div>
 """, unsafe_allow_html=True)
 
