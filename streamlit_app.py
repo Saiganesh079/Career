@@ -110,7 +110,7 @@ query = st.chat_input("What's on your mind? ")
 if query:
     process_user_input(query)
 
-# Check if the user clicked the Pursuit button
+# Check which page to display
 if 'current_page' not in st.session_state:
     st.session_state.current_page = 'home'
 
@@ -127,14 +127,5 @@ if st.session_state.current_page == 'home':
 
 elif st.session_state.current_page == 'pursuit':
     st.markdown("""
-        <h2>Kaizen</ </h2>
-        <p><strong>Description:</strong> Kaizen, a Japanese philosophy of continuous improvement, encourages making small, incremental changes every day to achieve larger life goals. By focusing on consistent, manageable steps, Kaizen fosters long-term progress and resilience, helping you reach your aims without overwhelming yourself. This approach is effective for both personal development and professional growth.</p>
-        
-        <h2>SWOT Analysis for Personal Growth</h2>
-        <p><strong>Description:</strong> Common in business, SWOT Analysis (Strengths, Weaknesses, Opportunities, Threats) can also be applied to personal development. By evaluating your internal strengths and weaknesses, as well as external opportunities and threats, you gain insights into how to maximize your potential. This structured reflection can help you make informed decisions to achieve your aims.</p>
-    """)
-
-    # Button to go back to the home page
-    if st.button("Back to Home"):
-        st.session_state.current_page = 'home'
-        st.experimental_rerun() python
+        <h2>Kaizen</h2>
+        <p><strong>Description:</strong> Kaizen, a Japanese philosophy of continuous improvement, encourages
