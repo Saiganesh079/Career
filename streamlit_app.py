@@ -30,12 +30,13 @@ st.markdown(
             left: 0;
             right: 0;
             height: 50px;
-            background-color: #4CAF50; /* Change this to your preferred color */
-            color: white;
+            background-color: #FFFFFF; /* White background */
+            color: #333333; /* Dark text color for contrast */
             font-size: 20px;
             font-weight: bold;
             text-align: center;
             line-height: 50px;
+            border-bottom: 1px solid #e0e0e0; /* Optional border for definition */
             z-index: 10000; /* Ensure it stays above other elements */
         }
         /* Adjust main content to avoid overlap */
