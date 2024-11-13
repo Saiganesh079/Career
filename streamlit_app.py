@@ -22,11 +22,26 @@ def generate_text_response(query):
 # Create a Streamlit app
 st.title("Career Map")
 
-# Sidebar for navigation
-st.sidebar.title("Navigation")
-st.sidebar.markdown("[Home](#)")
-st.sidebar.markdown("[About](#)")
-st.sidebar.markdown("[Contact](#)")
+# Custom navigation bar at the top
+st.markdown("""
+<style>
+.header {
+    background-color: #f1f1f1;
+    padding: 10px;
+    text-align: center;
+}
+.nav-link {
+    margin: 0 15px;
+    text-decoration: none;
+    color: black;
+}
+</style>
+<div class="header">
+    <a class="nav-link" href="#">Home</a>
+    <a class="nav-link" href="#">About</a>
+    <a class="nav-link" href="#">Contact</a>
+</div>
+""", unsafe_allow_html=True)
 
 # Initialize the chat history
 if "messages" not in st.session_state:
