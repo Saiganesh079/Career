@@ -19,9 +19,8 @@ def generate_text_response(query):
     response = model.generate_content(query)
     return response.text
 
-# Initialize the Pursuit section toggle
-if "show_pursuit" not in st.session_state:
-    st.session_state.show_pursuit = False  # Default to showing the main chatbot view
+# Create a Streamlit app
+st.title("Career Map")
 
 # Custom CSS to hide the default header and footer, and style the navigation bar
 st.markdown("""
@@ -38,8 +37,8 @@ st.markdown("""
         .navbar {
             background-color: #f1f1f1;
             padding: 10px;
-            display: flex;
-            justify-content: flex-end;
+            display: flex; /* Use flexbox */
+            justify-content: flex-end; /* Align items to the right */
             position: fixed;
             top: 0;
             left: 0;
@@ -47,64 +46,66 @@ st.markdown("""
             z-index: 1000;
         }
         .pursuit-button {
-            background-color: transparent;
-            border: 2px solid #4CAF50;
-            color: #4CAF50;
+            background-color: transparent; /* Transparent background */
+            border: 2px solid #4CAF50; /* Green border */
+            color: #4CAF50; /* Green text */
             padding: 10px 20px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin: 4px 2px;
             cursor: pointer;
             border-radius: 5px;
-            transition: background-color 0.3s, color 0.3s;
+            transition: background-color 0.3s, transform 0.2s, color 0.3s;
         }
         .pursuit-button:hover {
-            background-color: #4CAF50;
-            color: white;
+            background-color: #4CAF50; /* Green background on hover */
+            color: white; /* White text on hover */
+        }
+        .pursuit-button:active {
+            transform: scale(0.95); /* Button press effect */
+        }
+        body {
+            margin: 0;
+            padding-top: 60px; /* Adjust based on navbar height */
         }
     </style>
+    <div class="navbar">
+        <span class="pursuit-button">Pursuit</span> <!-- Changed to span -->
+    </div>
 """, unsafe_allow_html=True)
 
-# Navbar with Pursuit button
-if st.button("Pursuit", key="pursuit_button"):
-    st.session_state.show_pursuit = not st.session_state.show_pursuit  # Toggle the Pursuit section
+# Initialize the chat history
+if "messages" not in st.session_state:
+    st.session_state.messages = [
+        {"role": "assistant", "content": "Hi!, I am CareerMap. What can I help you with?"}
+    ]
 
-# Main content - conditionally display based on the Pursuit toggle
-if st.session_state.show_pursuit:
-    st.title("Pursuit")
-    st.write("Welcome to the Pursuit section! Here, you can add specific content or resources related to career pursuits.")
+# Display the chat history
+for message in st.session_state.messages:
+    with st.chat_message(message["role"]):
+        st.markdown(message["content"])
+
+# Process and store user input
+def process_user_input(query):
+    # Generate a response using the Gemini API
+    with st.spinner("Thinking..."):
+        response = generate_text_response(query)
     
-    # Additional content specific to the Pursuit section can be added here
-    st.write("Explore various career resources and guidance.")
+    # Display the assistant message
+    with st.chat_message("assistant"):
+        st.markdown(response)
     
-else:
-    st.title("Career Map")
+    # Store the user message
+    st.session_state.messages.append({"role": "user", "content": query})
+    
+    # Store the assistant message
+    st.session_state.messages.append({"role": "assistant", "content": response})
 
-    # Initialize the chat history
-    if "messages" not in st.session_state:
-        st.session_state.messages = [
-            {"role": "assistant", "content": "Hi! I am CareerMap. What can I help you with?"}
-        ]
+# Accept user input
+query = st.chat_input("What's on your mind? ")
 
-    # Display the chat history
-    for message in st.session_state.messages:
-        with st.chat_message(message["role"]):
-            st.markdown(message["content"])
-
-    # Process and store user input
-    def process_user_input(query):
-        # Generate a response using the Gemini API
-        with st.spinner("Thinking..."):
-            response = generate_text_response(query)
-        
-        # Display the assistant message
-        with st.chat_message("assistant"):
-            st.markdown(response)
-        
-        # Store the user and assistant messages
-        st.session_state.messages.append({"role": "user", "content": query})
-        st.session_state.messages.append({"role": "assistant", "content": response})
-
-    # Accept user input
-    query = st.chat_input("What's on your mind? ")
-
-    # Process the user input
-    if query:
-        process_user_input(query)
+# Process the user input
+if query:
+    process_user_input(query)
