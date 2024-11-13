@@ -72,7 +72,7 @@ st.markdown("""
         }
     </style>
     <div class="navbar">
-        <span class="pursuit-button">Pursuit</span> <!-- Changed to span -->
+        <span class="pursuit-button" onclick="window.location.href='/https://www.instagram.com/spacenaturestencil/';">Pursuit</span>
     </div>
 """, unsafe_allow_html=True)
 
