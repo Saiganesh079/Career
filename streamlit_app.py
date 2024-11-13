@@ -34,8 +34,25 @@ st.markdown("""
             right: 0;
             z-index: 1000;
         }
-        .radio-container {
-            margin: 0 20px;
+        .button {
+            background-color: #4CAF50; /* Green background */
+            border: none;
+            color: white; /* White text */
+            padding: 10px 20px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin: 4px 2px;
+            cursor: pointer;
+            border-radius: 5px;
+            transition: background-color 0.3s, transform 0.2s;
+        }
+        .button:hover {
+            background-color: #45a049; /* Darker green on hover */
+        }
+        .button.selected {
+            background-color: #45a049; /* Darker green when selected */
         }
         body {
             margin: 0;
@@ -43,19 +60,20 @@ st.markdown("""
         }
     </style>
     <div class="overlay">
-        <div class="radio-container">
-            <label>
-                <input type="radio" name="nav" value="Career G" checked onclick="window.location.reload();"> Career G
-            </label>
-            <label>
-                <input type="radio" name="nav" value="Pursuit Info" onclick="window.location.reload();"> Pursuit Info
-            </label>
-        </div>
+        <button class="button" id="career-g" onclick="setPage('Career G')">Career G</button>
+        <button class="button" id="pursuit-info" onclick="setPage('Pursuit Info')">Pursuit Info</button>
     </div>
+    <script>
+        function setPage(page) {
+            const params = new URLSearchParams(window.location.search);
+            params.set('page', page);
+            window.location.search = params.toString();
+        }
+    </script>
 """, unsafe_allow_html=True)
 
-# Create a Streamlit app
-selected_page = st.radio("Select a page:", ["Career G", "Pursuit Info"])
+# Get the selected page from the URL parameters
+selected_page = st.experimental_get_query_params().get('page', ['Career G'])[0]
 
 if selected_page == "Career G":
     st.title("Career Map")
