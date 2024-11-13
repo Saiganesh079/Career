@@ -135,4 +135,8 @@ elif st.session_state.page == "Pursuit Info":
         Here you can find various resources and information related to your career pursuits.
         
         - **Resource 1:** Description of Resource 1.
-        - **Resource 2:** Description of Resource
+        - **Resource 2:** Description of Resource 2.
+        - **Resource 3:** Description of Resource 3.
+        
+        If you have any questions or need further assistance, feel free to ask!
+    """)
