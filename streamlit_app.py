@@ -47,7 +47,7 @@ st.markdown("""
         .pursuit-button {
             background-color: #4CAF50; /* Green */
             border: none;
-            color: white;
+            color: #ffffff; /* Change text color to white */
             padding: 10px 20px;
             text-align: center;
             text-decoration: none;
