@@ -72,9 +72,23 @@ st.markdown("""
         }
     </style>
     <div class="navbar">
-        <button class="pursuit-button" onclick="window.location.href='#pursuit-section';">Pursuit</button>
+        <span class="pursuit-button" onclick="document.getElementById('pursuit-section').scrollIntoView();">Pursuit</span>
     </div>
 """, unsafe_allow_html=True)
+
+# Create a section for the Pursuit information
+pursuit_section = """
+    <div id="pursuit-section" style="padding: 20px; margin-top: 60px;">
+        <h2>Kaizen</h2>
+        <p><strong>Description:</strong> Kaizen, a Japanese philosophy of continuous improvement, encourages making small, incremental changes every day to achieve larger life goals. By focusing on consistent, manageable steps, Kaizen fosters long-term progress and resilience, helping you reach your aims without overwhelming yourself. This approach is effective for both personal development and professional growth.</p>
+        
+        <h2>SWOT Analysis for Personal Growth</h2>
+        <p><strong>Description:</strong> Common in business, SWOT Analysis (Strengths, Weaknesses, Opportunities, Threats) can also be applied to personal development. By evaluating your internal strengths and weaknesses, as well as external opportunities and threats, you gain insights into how to maximize your potential. This structured reflection can help you make informed decisions to achieve your aims.</p>
+    </div>
+"""
+
+# Display the Pursuit section
+st.markdown(pursuit_section, unsafe_allow_html=True)
 
 # Initialize the chat history
 if "messages" not in st.session_state:
@@ -97,7 +111,7 @@ def process_user_input(query):
     with st.chat_message("assistant"):
         st.markdown(response)
     
-    # Store the user message
+ # Store the user message
     st.session_state.messages.append({"role": "user", "content": query})
     
     # Store the assistant message
@@ -109,32 +123,3 @@ query = st.chat_input("What's on your mind? ")
 # Process the user input
 if query:
     process_user_input(query)
-
-# Check which page to display
-if 'current_page' not in st.session_state:
-    st.session_state.current_page = 'home'
-
-if st.session_state.current_page == 'home':
-    st.markdown("""
-        <h2>Welcome to the Career Map</h2>
-        <p>Click the Pursuit button to learn more about Kaizen and SWOT Analysis.</p>
-    """, unsafe_allow_html=True)
-
-    # Pursuit button to navigate to the new page
-    if st.button("Pursuit"):
-        st.session_state.current_page = 'pursuit'
-        st.experimental_rerun()
-
-elif st.session_state.current_page == 'pursuit':
-    st.markdown("""
-        <h2>Kaizen</h2>
-        <p><strong>Description:</strong> Kaizen, a Japanese philosophy of continuous improvement, encourages making small, incremental changes every day to achieve larger life goals. By focusing on consistent, manageable steps, Kaizen fosters long-term progress and resilience, helping you reach your aims without overwhelming yourself. This approach is effective for both personal development and professional growth.</p>
-        
-        <h2>SWOT Analysis for Personal Growth</h2>
-        <p><strong>Description:</strong> Common in business, SWOT Analysis (Strengths, Weaknesses, Opportunities, Threats) can also be applied to personal development. By evaluating your internal strengths and weaknesses, as well as external opportunities and threats, you gain insights into how to maximize your potential. This structured reflection can help you make informed decisions to achieve your aims.</p>
-    """)
-
-    # Button to go back to the home page
-    if st.button("Back to Home"):
-        st.session_state.current_page = 'home'
-        st.experimental_rerun()
