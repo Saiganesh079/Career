@@ -43,7 +43,7 @@ st.markdown("""
             text-decoration: none;
             display: inline-block;
             font-size: 16px;
-            margin: 4px 2px;
+            margin: 4px 10px; /* Space between buttons */
             cursor: pointer;
             border-radius: 5px;
             transition: background-color 0.3s, transform 0.2s;
