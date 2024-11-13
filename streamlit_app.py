@@ -19,9 +19,9 @@ def generate_text_response(query):
     response = model.generate_content(query)
     return response.text
 
-# Track which page the user is viewing
-if "page" not in st.session_state:
-    st.session_state.page = "home"  # Default to the home page
+# Initialize the Pursuit section toggle
+if "show_pursuit" not in st.session_state:
+    st.session_state.show_pursuit = False  # Default to showing the main chatbot view
 
 # Custom CSS to hide the default header and footer, and style the navigation bar
 st.markdown("""
@@ -60,17 +60,21 @@ st.markdown("""
             color: white;
         }
     </style>
-    <div class="navbar">
-        <!-- Placeholder for Pursuit Button -->
-    </div>
 """, unsafe_allow_html=True)
 
-# Add Pursuit button in Streamlit app
-if st.button("Pursuit", key="pursuit_btn"):
-    st.session_state.page = "pursuit"  # Switch to Pursuit page
+# Navbar with Pursuit button
+if st.button("Pursuit", key="pursuit_button"):
+    st.session_state.show_pursuit = not st.session_state.show_pursuit  # Toggle the Pursuit section
 
-# Display content based on the current page
-if st.session_state.page == "home":
+# Main content - conditionally display based on the Pursuit toggle
+if st.session_state.show_pursuit:
+    st.title("Pursuit")
+    st.write("Welcome to the Pursuit section! Here, you can add specific content or resources related to career pursuits.")
+    
+    # Additional content specific to the Pursuit section can be added here
+    st.write("Explore various career resources and guidance.")
+    
+else:
     st.title("Career Map")
 
     # Initialize the chat history
@@ -104,12 +108,3 @@ if st.session_state.page == "home":
     # Process the user input
     if query:
         process_user_input(query)
-
-# Pursuit Page content
-elif st.session_state.page == "pursuit":
-    st.title("Pursuit Page")
-    st.write("Welcome to the Pursuit page! Here you can add content related to career pursuits or exploration.")
-
-    # Add a back button to return to the main page
-    if st.button("Go Back"):
-        st.session_state.page = "home"
