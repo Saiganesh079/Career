@@ -31,18 +31,19 @@ st.markdown("""
             display: flex;
             justify-content: center;
         }
-        .topnav button {
+        .topnav a {
             background-color: #007bff;
             color: white;
             border: none;
             border-radius: 5px;
             padding: 10px 20px;
             margin: 5px;
-            cursor: pointer;
+            text-decoration: none;
             font-size: 16px;
             transition: background-color 0.3s;
+            text-align: center;
         }
-        .topnav button:hover {
+        .topnav a:hover {
             background-color: #0056b3;
         }
         .stChatMessage {
@@ -72,24 +73,19 @@ st.markdown("""
 # Top navigation bar
 st.markdown("""
     <div class="topnav">
-        <button onclick="window.location.href='#career-map'">Career Map</button>
-        <button onclick="window.location.href='#pursuit-info'">Pursuit Info</button>
+        <a href="#career-map" onclick="document.getElementById('career-map').scrollIntoView();">Career Map</a>
+        <a href="#pursuit-info" onclick="document.getElementById('pursuit-info').scrollIntoView();">Pursuit Info</a>
     </div>
 """, unsafe_allow_html=True)
 
 # Create a Streamlit app
-if st.button("Career Map", key="career_map"):
-    st.session_state.page = "Career Map"
-elif st.button("Pursuit Info", key="pursuit_info"):
-    st.session_state.page = "Pursuit Info"
-
-# Set default page if not defined
 if "page" not in st.session_state:
     st.session_state.page = "Career Map"
 
 # Handle the selected page
 if st.session_state.page == "Career Map":
     st.title("Career Map")
+    st.markdown('<div id="career-map"></div>', unsafe_allow_html=True)
 
     # Initialize the chat history
     if "messages" not in st.session_state:
@@ -127,6 +123,7 @@ if st.session_state.page == "Career Map":
 
 elif st.session_state.page == "Pursuit Info":
     st.title("Pursuit Information")
+    st.markdown('<div id="pursuit-info"></div>', unsafe_allow_html=True)
     st.markdown("""
         ## Welcome to the Pursuit Information Page
         Here you can find various resources and information related to your career pursuits.
