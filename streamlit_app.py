@@ -1,6 +1,6 @@
-import streamlit as st 
+import streamlit as st
 import os
-import google.generativeai as genai 
+import google.generativeai as genai
 
 # Set page configuration to wide mode
 st.set_page_config(layout="wide")
@@ -19,26 +19,19 @@ def generate_text_response(query):
     response = model.generate_content(query)
     return response.text
 
-# Create a Streamlit app
-st.title("Career Map")
+# Check or initialize page state
+if "page" not in st.session_state:
+    st.session_state.page = "home"  # Set default page to home
 
-# Custom CSS to hide the default header and footer, and style the navigation bar
+# Custom CSS for styling
 st.markdown("""
     <style>
-        /* Hide the default header */
-        header {
-            visibility: hidden;
-        }
-        /* Hide the default footer */
-        footer {
-            visibility: hidden;
-        }
         /* Custom navigation bar styling */
         .navbar {
             background-color: #f1f1f1;
             padding: 10px;
-            display: flex; /* Use flexbox */
-            justify-content: flex-end; /* Align items to the right */
+            display: flex;
+            justify-content: flex-end;
             position: fixed;
             top: 0;
             left: 0;
@@ -46,66 +39,68 @@ st.markdown("""
             z-index: 1000;
         }
         .pursuit-button {
-            background-color: transparent; /* Transparent background */
-            border: 2px solid #4CAF50; /* Green border */
-            color: #4CAF50; /* Green text */
+            background-color: transparent;
+            border: 2px solid #4CAF50;
+            color: #4CAF50;
             padding: 10px 20px;
-            text-align: center;
-            text-decoration: none;
-            display: inline-block;
-            font-size: 16px;
-            margin: 4px 2px;
             cursor: pointer;
             border-radius: 5px;
-            transition: background-color 0.3s, transform 0.2s, color 0.3s;
+            transition: background-color 0.3s, color 0.3s;
         }
         .pursuit-button:hover {
-            background-color: #4CAF50; /* Green background on hover */
-            color: white; /* White text on hover */
-        }
-        .pursuit-button:active {
-            transform: scale(0.95); /* Button press effect */
-        }
-        body {
-            margin: 0;
-            padding-top: 60px; /* Adjust based on navbar height */
+            background-color: #4CAF50;
+            color: white;
         }
     </style>
     <div class="navbar">
-        <span class="pursuit-button" onclick="window.location.href='/new_page';">Pursuit</span>
+        <button class="pursuit-button" onclick="window.location.reload();">Pursuit</button>
     </div>
 """, unsafe_allow_html=True)
 
-# Initialize the chat history
-if "messages" not in st.session_state:
-    st.session_state.messages = [
-        {"role": "assistant", "content": "Hi!, I am CareerMap. What can I help you with?"}
-    ]
+# Button click handler to switch pages
+if st.button("Pursuit", key="pursuit_btn"):
+    st.session_state.page = "pursuit"  # Switch to Pursuit page
 
-# Display the chat history
-for message in st.session_state.messages:
-    with st.chat_message(message["role"]):
-        st.markdown(message["content"])
-
-# Process and store user input
-def process_user_input(query):
-    # Generate a response using the Gemini API
-    with st.spinner("Thinking..."):
-        response = generate_text_response(query)
+# Home Page content
+if st.session_state.page == "home":
+    st.title("Career Map")
     
-    # Display the assistant message
-    with st.chat_message("assistant"):
-        st.markdown(response)
-    
-    # Store the user message
-    st.session_state.messages.append({"role": "user", "content": query})
-    
-    # Store the assistant message
-    st.session_state.messages.append({"role": "assistant", "content": response})
+    if "messages" not in st.session_state:
+        st.session_state.messages = [
+            {"role": "assistant", "content": "Hi! I am CareerMap. What can I help you with?"}
+        ]
 
-# Accept user input
-query = st.chat_input("What's on your mind? ")
+    # Display the chat history
+    for message in st.session_state.messages:
+        with st.chat_message(message["role"]):
+            st.markdown(message["content"])
 
-# Process the user input
-if query:
-    process_user_input(query)
+    # Process and store user input
+    def process_user_input(query):
+        # Generate a response using the Gemini API
+        with st.spinner("Thinking..."):
+            response = generate_text_response(query)
+        
+        # Display the assistant message
+        with st.chat_message("assistant"):
+            st.markdown(response)
+        
+        # Store the user and assistant messages
+        st.session_state.messages.append({"role": "user", "content": query})
+        st.session_state.messages.append({"role": "assistant", "content": response})
+
+    # Accept user input
+    query = st.chat_input("What's on your mind? ")
+
+    # Process the user input
+    if query:
+        process_user_input(query)
+
+# Pursuit Page content
+elif st.session_state.page == "pursuit":
+    st.title("Pursuit Page")
+    st.write("Welcome to the Pursuit page! Here you can add content related to career pursuits or exploration.")
+
+    # Add a back button to return to the main page
+    if st.button("Go Back"):
+        st.session_state.page = "home"
