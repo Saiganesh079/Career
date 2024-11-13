@@ -26,14 +26,17 @@ st.title("Career Map")
 st.markdown("""
     <style>
         /* Hide the header */
-        .css-1aumxhk {
+        header {
             visibility: hidden;
         }
         /* Hide the footer */
-        .css-1d391kg {
+        footer {
             visibility: hidden;
         }
         /* Optionally, you can also adjust the body margin to utilize full height */
+        .css-1d391kg {
+            visibility: hidden;
+        }
         body {
             margin: 0;
         }
