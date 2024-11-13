@@ -137,4 +137,4 @@ elif st.session_state.current_page == 'pursuit':
     # Button to go back to the home page
     if st.button("Back to Home"):
         st.session_state.current_page = 'home'
-        st.experimental_rerun() ```python
+        st.experimental_rerun() python
