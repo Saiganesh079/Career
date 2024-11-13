@@ -44,11 +44,25 @@ st.markdown("""
             right: 0;
             z-index: 1000;
         }
-        .nav-link {
-            margin: 0 15px;
+        .pursuit-button {
+            background-color: #4CAF50; /* Green */
+            border: none;
+            color: white;
+            padding: 10px 20px;
+            text-align: center;
             text-decoration: none;
-            color: black;
-            font-weight: bold;
+            display: inline-block;
+            font-size: 16px;
+            margin: 4px 2px;
+            cursor: pointer;
+            border-radius: 5px;
+            transition: background-color 0.3s, transform 0.2s;
+        }
+        .pursuit-button:hover {
+            background-color: #45a049; /* Darker green */
+        }
+        .pursuit-button:active {
+            transform: scale(0.95); /* Button press effect */
         }
         body {
             margin: 0;
@@ -56,9 +70,7 @@ st.markdown("""
         }
     </style>
     <div class="navbar">
-        <a class="nav-link" href="#">Home</a>
-        <a class="nav-link" href="#">About</a>
-        <a class="nav-link" href="#">Contact</a>
+        <a class="pursuit-button" href="#">Pursuit</a>
     </div>
 """, unsafe_allow_html=True)
 
