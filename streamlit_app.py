@@ -22,15 +22,28 @@ def generate_text_response(query):
 # Custom CSS for styling
 st.markdown("""
     <style>
-        .sidebar .sidebar-content {
+        /* Style for the top navigation bar */
+        .topnav {
             background-color: #f0f2f5;
-            padding: 20px;
+            overflow: hidden;
             border-radius: 10px;
+            padding: 10px;
+            display: flex;
+            justify-content: center;
         }
-        .sidebar .sidebar-title {
-            font-size: 24px;
-            font-weight: bold;
-            color: #333;
+        .topnav button {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            padding: 10px 20px;
+            margin: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s;
+        }
+        .topnav button:hover {
+            background-color: #0056b3;
         }
         .stChatMessage {
             border-radius: 10px;
@@ -56,12 +69,26 @@ st.markdown("""
     </style>
 """, unsafe_allow_html=True)
 
-# Sidebar for navigation
-st.sidebar.title("Navigation", anchor='sidebar-title')
-page = st.sidebar.radio("Go to", ["Career Map", "Pursuit Info"])
+# Top navigation bar
+st.markdown("""
+    <div class="topnav">
+        <button onclick="window.location.href='#career-map'">Career Map</button>
+        <button onclick="window.location.href='#pursuit-info'">Pursuit Info</button>
+    </div>
+""", unsafe_allow_html=True)
 
 # Create a Streamlit app
-if page == "Career Map":
+if st.button("Career Map", key="career_map"):
+    st.session_state.page = "Career Map"
+elif st.button("Pursuit Info", key="pursuit_info"):
+    st.session_state.page = "Pursuit Info"
+
+# Set default page if not defined
+if "page" not in st.session_state:
+    st.session_state.page = "Career Map"
+
+# Handle the selected page
+if st.session_state.page == "Career Map":
     st.title("Career Map")
 
     # Initialize the chat history
@@ -98,7 +125,7 @@ if page == "Career Map":
     if query:
         process_user_input(query)
 
-elif page == "Pursuit Info":
+elif st.session_state.page == "Pursuit Info":
     st.title("Pursuit Information")
     st.markdown("""
         ## Welcome to the Pursuit Information Page
