@@ -22,6 +22,24 @@ def generate_text_response(query):
 # Create a Streamlit app
 st.title("Career Map")
 
+# Custom CSS to hide the top and bottom elements
+st.markdown("""
+    <style>
+        /* Hide the header */
+        .css-1aumxhk {
+            visibility: hidden;
+        }
+        /* Hide the footer */
+        .css-1d391kg {
+            visibility: hidden;
+        }
+        /* Optionally, you can also adjust the body margin to utilize full height */
+        body {
+            margin: 0;
+        }
+    </style>
+""", unsafe_allow_html=True)
+
 # Sidebar for navigation
 st.sidebar.title("Navigation")
 st.sidebar.markdown("[Home](#)")
