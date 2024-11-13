@@ -22,15 +22,59 @@ def generate_text_response(query):
 # Create a Streamlit app
 st.title("Career Map")
 
-# Display Pursuit button and handle click
-if st.button("Pursuit"):
-    st.session_state.page = "pursuit"
-
-# Check if the button is clicked and display the appropriate page content
-if st.session_state.get("page") == "pursuit":
-    st.write("Welcome to the Pursuit page!")
-else:
-    st.write("This is the main Career Map page.")
+# Custom CSS to hide the default header and footer, and style the navigation bar
+st.markdown("""
+    <style>
+        /* Hide the default header */
+        header {
+            visibility: hidden;
+        }
+        /* Hide the default footer */
+        footer {
+            visibility: hidden;
+        }
+        /* Custom navigation bar styling */
+        .navbar {
+            background-color: #f1f1f1;
+            padding: 10px;
+            display: flex; /* Use flexbox */
+            justify-content: flex-end; /* Align items to the right */
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+        }
+        .pursuit-button {
+            background-color: transparent; /* Transparent background */
+            border: 2px solid #4CAF50; /* Green border */
+            color: #4CAF50; /* Green text */
+            padding: 10px 20px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin: 4px 2px;
+            cursor: pointer;
+            border-radius: 5px;
+            transition: background-color 0.3s, transform 0.2s, color 0.3s;
+        }
+        .pursuit-button:hover {
+            background-color: #4CAF50; /* Green background on hover */
+            color: white; /* White text on hover */
+        }
+        .pursuit-button:active {
+            transform: scale(0.95); /* Button press effect */
+        }
+        body {
+            margin: 0;
+            padding-top: 60px; /* Adjust based on navbar height */
+        }
+    </style>
+    <div class="navbar">
+        <span class="pursuit-button" onclick="window.location.href='/https://www.instagram.com/spacenaturestencil/';">Pursuit</span>
+    </div>
+""", unsafe_allow_html=True)
 
 # Initialize the chat history
 if "messages" not in st.session_state:
