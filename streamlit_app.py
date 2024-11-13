@@ -19,8 +19,45 @@ def generate_text_response(query):
     response = model.generate_content(query)
     return response.text
 
+# Custom CSS for styling
+st.markdown("""
+    <style>
+        .sidebar .sidebar-content {
+            background-color: #f0f2f5;
+            padding: 20px;
+            border-radius: 10px;
+        }
+        .sidebar .sidebar-title {
+            font-size: 24px;
+            font-weight: bold;
+            color: #333;
+        }
+        .stChatMessage {
+            border-radius: 10px;
+            padding: 10px;
+            margin-bottom: 10px;
+        }
+        .stChatMessage.user {
+            background-color: #d1e7dd;
+            color: #0f5132;
+        }
+        .stChatMessage.assistant {
+            background-color: #cfe2ff;
+            color: #1c1e21;
+        }
+        .stChatInput {
+            border-radius: 10px;
+            border: 1px solid #ccc;
+            padding: 10px;
+        }
+        .stButton {
+            border-radius: 10px;
+        }
+    </style>
+""", unsafe_allow_html=True)
+
 # Sidebar for navigation
-st.sidebar.title("Navigation")
+st.sidebar.title("Navigation", anchor='sidebar-title')
 page = st.sidebar.radio("Go to", ["Career Map", "Pursuit Info"])
 
 # Create a Streamlit app
