@@ -19,25 +19,28 @@ def generate_text_response(query):
     response = model.generate_content(query)
     return response.text
 
-# Add overlay bar at the top using HTML and CSS
+# Inject CSS for overlay bar at the top
 st.markdown(
     """
     <style>
+        /* Overlay bar styling */
         .top-bar {
             position: fixed;
             top: 0;
-            width: 100%;
+            left: 0;
+            right: 0;
             height: 50px;
-            background-color: #4CAF50; /* Adjust color as needed */
+            background-color: #4CAF50; /* Change this to your preferred color */
             color: white;
+            font-size: 20px;
+            font-weight: bold;
             text-align: center;
             line-height: 50px;
-            font-weight: bold;
-            font-size: 20px;
-            z-index: 1000;
+            z-index: 10000; /* Ensure it stays above other elements */
         }
+        /* Adjust main content to avoid overlap */
         .main-content {
-            padding-top: 60px; /* Adjust to avoid overlap with top bar */
+            padding-top: 60px; /* Adjust padding to ensure content doesn’t overlap with bar */
         }
     </style>
     <div class="top-bar">Welcome to Career Map</div>
