@@ -19,41 +19,14 @@ def generate_text_response(query):
     response = model.generate_content(query)
     return response.text
 
-# Inject CSS for overlay bar at the top
-st.markdown(
-    """
-    <style>
-        /* Overlay bar styling */
-        .top-bar {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 50px;
-            background-color: #FFFFFF; /* White background */
-            color: #333333; /* Dark text color for contrast */
-            font-size: 20px;
-            font-weight: bold;
-            text-align: center;
-            line-height: 50px;
-            border-bottom: 1px solid #e0e0e0; /* Optional border for definition */
-            z-index: 10000; /* Ensure it stays above other elements */
-        }
-        /* Adjust main content to avoid overlap */
-        .main-content {
-            padding-top: 60px; /* Adjust padding to ensure content doesn’t overlap with bar */
-        }
-    </style>
-    <div class="top-bar">Welcome to Career Map</div>
-    """, 
-    unsafe_allow_html=True
-)
-
-# Apply padding to the main content
-st.markdown('<div class="main-content">', unsafe_allow_html=True)
-
-# Streamlit app content
+# Create a Streamlit app
 st.title("Career Map")
+
+# Sidebar for navigation
+st.sidebar.title("Navigation")
+st.sidebar.markdown("[Home](#)")
+st.sidebar.markdown("[About](#)")
+st.sidebar.markdown("[Contact](#)")
 
 # Initialize the chat history
 if "messages" not in st.session_state:
@@ -88,6 +61,3 @@ query = st.chat_input("What's on your mind? ")
 # Process the user input
 if query:
     process_user_input(query)
-
-# Close the main content div
-st.markdown('</div>', unsafe_allow_html=True)
