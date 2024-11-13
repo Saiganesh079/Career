@@ -73,16 +73,22 @@ st.markdown("""
 # Top navigation bar
 st.markdown("""
     <div class="topnav">
-        <a href="#career-map" onclick="document.getElementById('career-map').scrollIntoView();">Career Map</a>
-        <a href="#pursuit-info" onclick="document.getElementById('pursuit-info').scrollIntoView();">Pursuit Info</a>
+        <a href="#career-map" onclick="setPage('Career Map')">Career Map</a>
+        <a href="#pursuit-info" onclick="setPage('Pursuit Info')">Pursuit Info</a>
     </div>
+    <script>
+        function setPage(page) {
+            const streamlit = window.streamlit || {};
+            streamlit.setPage(page);
+        }
+    </script>
 """, unsafe_allow_html=True)
 
-# Create a Streamlit app
+# Set the default page
 if "page" not in st.session_state:
     st.session_state.page = "Career Map"
 
-# Handle the selected page
+# Handle page navigation
 if st.session_state.page == "Career Map":
     st.title("Career Map")
     st.markdown('<div id="career-map"></div>', unsafe_allow_html=True)
@@ -129,8 +135,4 @@ elif st.session_state.page == "Pursuit Info":
         Here you can find various resources and information related to your career pursuits.
         
         - **Resource 1:** Description of Resource 1.
-        - **Resource 2:** Description of Resource 2.
-        - **Resource 3:** Description of Resource 3.
-        
-        Feel free to explore and ask questions!
-    """)
+        - **Resource 2:** Description of Resource
