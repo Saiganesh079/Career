@@ -51,9 +51,6 @@ st.markdown("""
         .button:hover {
             background-color: #45a049; /* Darker green on hover */
         }
-        .button.selected {
-            background-color: #45a049; /* Darker green when selected */
-        }
         body {
             margin: 0;
             padding-top: 60px; /* Adjust based on overlay height */
