@@ -72,7 +72,7 @@ st.markdown("""
         }
     </style>
     <div class="navbar">
-        <span class="pursuit-button">Pursuit</span>
+        <a href="https://aimahead0.wordpress.com/" target="_blank" class="pursuit-button">Pursuit</a>
     </div>
 """, unsafe_allow_html=True)
 
