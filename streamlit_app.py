@@ -1,6 +1,9 @@
-import streamlit as st 
+import streamlit as st
 import os
-import google.generativeai as genai 
+import google.generativeai as genai
+import threading
+import time
+import requests
 
 # Set page configuration to wide mode
 st.set_page_config(layout="wide")
@@ -109,3 +112,16 @@ query = st.chat_input("What's on your mind? ")
 # Process the user input
 if query:
     process_user_input(query)
+
+# Self-ping functionality to prevent sleep mode
+def ping_self():
+    app_url = "https://aimahead.streamlit.app/"  # Replace with your Streamlit app URL
+    while True:
+        time.sleep(600)  # Ping every 10 minutes
+        try:
+            requests.get(app_url)
+        except Exception as e:
+            print(f"Ping failed: {e}")
+
+# Start the ping thread
+threading.Thread(target=ping_self, daemon=True).start()
